@@ -11,7 +11,21 @@ fn main() {
         });
         let sum: usize = pairs.map(find_items_in_common).map(to_priority).sum();
         println!("part 1: {:?}", sum);
-    })
+    });
+
+    // part 2
+    get_lines(|lines| {
+        let groups = lines.chunks(3).map(|chunk| {
+            chunk
+                .iter()
+                .map(|s| s.to_owned().to_owned())
+                .collect::<Vec<String>>()
+        });
+
+        let sum: usize = groups.map(find_items_in_common).map(to_priority).sum();
+
+        println!("part 2: {}", sum);
+    });
 }
 
 fn find_items_in_common(pair: Vec<String>) -> char {
